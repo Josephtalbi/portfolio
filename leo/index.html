@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> What is name</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Guess who this is</h1>
+        <img id="character-image" src="" alt="شخصية" />
+        <input type="text" id="guess" placeholder=" Enter the characters name">
+        <button class="botton" id="submit">Guess</button>
+        <p id="result"></p>
+        <button class="button" id="restart" style="display:none;"> Restart</button>
+    </div>
+    <script src="script.js"></script>
+<head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffeded;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 50px 10px 5px 10px;
+    box-shadow: 10px 12px 12px 15PX rgb(0, 0, 0, 0.1);
+}
+
+.container h1{
+    color: black;
+    background-color: brown;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-style: double;
+    border-radius: 15px;
+    transition: all 1s ease;
+    content:var(#e600ff);
+}
+.container h1:hover{
+    transform: scale(-1, 1);
+}
+.container  button{
+    border-radius: 144px ;
+    transition: 0.5s;
+}
+.container {
+    background: rgb(255, 137, 12);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px  11px rgb(0, 0, 0, 0.1);
+
+    text-align: center;
+    transition: 0.3S ease;
+}
+.container:hover{
+    transform: scale(1.05);
+
+}
+
+#restart .botton button{
+    color: #26ff00;
+    background-color: brown;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 150px;
+    width: 150px;
+    
+}
+img {
+    width: 200px;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 12PX;
+    transition: .5s;
+}
+
+img:hover{
+    transform: scale(1.1);
+    border-radius: 3px;
+    border: 2px solid black;
+}
+input {
+    padding: 10px;
+    margin: 10px 0;
+    width: 80%;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #e600ff;
+    color: rgb(0, 229, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #26ff00;
+    color: black;
+    border: 2px solid black;
+}
+</style>
+</head>
+<script>
+const characters = [
+    { name: "messi", image: "azerty.jpg" },
+    { name: "heporne", image: "wommen.jpg" },
+    { name: "hankesse", image: " qsdfg.jpg" },
+    { name: "neymar", image: "nymar.JPEG"},
+    { name: "ronaldo", image: "ronaldo.JPG"},
+    { name: "trump", image: "donad.JPEG"},
+    { name: "mr ben", image: "mr ben.JPEG"},
+    { name: "biden", image: "joe biden.JPEG"},
+    { name: "suarez", image: "suarez.JPEG"},
+    { name: "mané", image: "sadio mané.JPEG"},
+    { name: "salah", image: "salah.JPEG"},
+    { name: "alonso", image: "alonso.JPG"},
+    { name: "xavi", image: "Xavi.JPEG"},
+    { name: "musk", image: "elon musk.JPG"},
+    { name: "courtois", image: "courtois.PNG"},
+    { name: "benzema", image: "benzema.JPEG"},
+
+
+
+    
+];
+let currentCharacter;
+let attempts = 5;
+function startGame() {
+    attempts = 0;
+    currentCharacter = characters[Math.floor(Math.random() * characters.length)];
+    document.getElementById('character-image').src = currentCharacter.image;
+    document.getElementById('result').textContent = '';
+    document.getElementById('guess').value = '';
+    document.getElementById('restart').style.display = 'none';
+}
+document.getElementById('submit').addEventListener('click', function() {
+    const userGuess = document.getElementById('guess').value.trim();
+    attempts++;
+
+    if (userGuess === currentCharacter.name) {
+        document.getElementById('result').textContent = ` Well done! You guessed the character: ${currentCharacter.name} in the ${attempts} attempt.`;
+        document.getElementById('restart').style.display = 'block';
+    } else {
+        document.getElementById('result').textContent = 'Try again';
+    }
+});
+document.getElementById('restart').addEventListener('click', startGame);
+window.onload = startGame;
+</script>
+</body>
+</html>
